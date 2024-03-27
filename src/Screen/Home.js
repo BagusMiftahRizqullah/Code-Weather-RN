@@ -61,11 +61,13 @@ const Home = props => {
       <View style={{padding: 12, alignItems: 'center'}}>
         <Text>18:30</Text>
         <View style={{height: 12}} />
-        <FastImage
-          style={{width: 20, height: 20}}
-          source={IconSetting}
-          resizeMode={FastImage.resizeMode.contain}
-        />
+        <TouchableOpacity>
+          <FastImage
+            style={{width: 20, height: 20}}
+            source={IconSetting}
+            resizeMode={FastImage.resizeMode.contain}
+          />
+        </TouchableOpacity>
         <View style={{height: 12}} />
         <Text>27°C</Text>
       </View>
@@ -95,7 +97,8 @@ const Home = props => {
           <Text style={styles.textSearch}>Indonesia</Text>
         </TouchableOpacity>
         <View style={styles.containerSetting}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate('SettingScreen')}>
             <FastImage
               style={{width: 20, height: 20}}
               source={IconSetting}
