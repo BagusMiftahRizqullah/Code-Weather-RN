@@ -15,7 +15,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import {LineChart} from 'react-native-chart-kit';
 import {IconSetting} from '../Assets/images';
 import {heightPercentageToDP} from 'react-native-responsive-screen';
-const Home = () => {
+const Home = props => {
   const [refreshing, setRefreshing] = useState(false);
 
   const ComponentLineChart = () => {
@@ -83,7 +83,9 @@ const Home = () => {
           justifyContent: 'space-between',
           paddingVertical: 8,
         }}>
-        <TouchableOpacity style={styles.containerSearch}>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate('SearchScreen')}
+          style={styles.containerSearch}>
           <Icon
             name="search"
             size={22}
