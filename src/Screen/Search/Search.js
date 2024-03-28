@@ -163,6 +163,7 @@ const Search = props => {
           />
         </TouchableOpacity>
       </View>
+
       <TouchableOpacity
         style={styles.buttonGetLocation}
         onPress={() => getLocation()}>
@@ -210,7 +211,7 @@ export default Search;
 
 const styles = StyleSheet.create({
   conatainer: {
-    padding: 12,
+    padding: 8,
     flex: 1,
     backgroundColor: '#ffffff',
   },
@@ -228,7 +229,7 @@ const styles = StyleSheet.create({
   textSearch: {
     color: '#000000',
     width: '80%',
-    height: 40,
+    height: 34,
   },
   buttonGetLocation: {
     paddingTop: 23,

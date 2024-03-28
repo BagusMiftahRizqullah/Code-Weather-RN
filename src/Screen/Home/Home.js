@@ -12,7 +12,6 @@ import {
 import React, {useCallback, useState, useRef, useEffect} from 'react';
 import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/Feather';
-import IconGoRight from 'react-native-vector-icons/MaterialIcons';
 import {LineChart} from 'react-native-chart-kit';
 import {IconSetting} from '../../Assets/images';
 import {useDispatch, useSelector} from 'react-redux';

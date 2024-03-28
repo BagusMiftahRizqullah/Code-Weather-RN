@@ -7,6 +7,7 @@ import {widthPercentageToDP} from 'react-native-responsive-screen';
 const Setting = props => {
   return (
     <View>
+      {/* Header */}
       <View
         style={{
           flexDirection: 'row',
@@ -22,17 +23,23 @@ const Setting = props => {
             size={22}
             color="#000000"
           />
-          <Text style={{fontSize: 16, color: '#000000', fontWeight: 'bold'}}>
-            Home
-          </Text>
+          <Text style={{fontSize: 16, color: '#000000'}}>Home</Text>
         </TouchableOpacity>
         <Text style={{fontSize: 18, color: '#000000', fontWeight: 'bold'}}>
           Settings
         </Text>
         <View style={{width: widthPercentageToDP('20%'), height: 24}} />
       </View>
-
+      <View
+        style={{
+          width: widthPercentageToDP('100%'),
+          height: 2,
+          backgroundColor: '#D9D9D9',
+          opacity: 0.5,
+        }}
+      />
       <TouchableOpacity
+        onPress={() => props.navigation.navigate('SettingWeather')}
         style={{
           paddingTop: 23,
           padding: 8,
@@ -60,6 +67,7 @@ const Setting = props => {
         }}
       />
       <TouchableOpacity
+        onPress={() => props.navigation.navigate('SettingUnit')}
         style={{
           paddingTop: 23,
           padding: 8,
@@ -101,7 +109,7 @@ const Setting = props => {
           All the data for OpenWeather App is provided by On Call Api.
           OpenWeather aggregates and processes meteorological data from tens of
           thousands of weather stations, on-ground radars and satelitesto bring
-          you accurate and actionable weather data for any location worldwide
+          you accurate and actionable weather data for any location worldwide.
         </Text>
       </View>
     </View>
