@@ -1,6 +1,6 @@
 import SplashScreen from './SplashScreen';
 import Home from './Home/Home';
 import Search from './Search/Search';
-import Setting from './Setting';
+import Setting from './Setting/Setting';
 
 export {SplashScreen, Home, Search, Setting};

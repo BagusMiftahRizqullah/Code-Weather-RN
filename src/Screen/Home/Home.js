@@ -7,6 +7,7 @@ import {
   ScrollView,
   Dimensions,
   RefreshControl,
+  BackHandler,
 } from 'react-native';
 import React, {useCallback, useState, useRef, useEffect} from 'react';
 import FastImage from 'react-native-fast-image';
@@ -54,13 +55,11 @@ const Home = props => {
   //   }
   // };
 
-  // useEffect(() => {
-  //   AppState.addEventListener('change', _handleAppStateChange);
-
-  //   return () => {
-  //     AppState.removeEventListener('change', _handleAppStateChange);
-  //   };
-  // }, []);
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', function () {
+      BackHandler.exitApp();
+    });
+  }, []);
 
   const ComponentLineChart = () => {
     return (

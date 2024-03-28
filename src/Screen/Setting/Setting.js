@@ -40,17 +40,25 @@ const Setting = props => {
           flexDirection: 'row',
           alignItems: 'center',
         }}>
-        <Text>Different weather</Text>
-        <TouchableOpacity>
+        <Text style={{color: '#000000', fontWeight: 'bold'}}>
+          Different weather
+        </Text>
+        <View>
           <IconGoRight
             name="navigate-next"
             size={22}
             color="#000000"
             style={{marginRight: 8}}
           />
-        </TouchableOpacity>
+        </View>
       </TouchableOpacity>
-
+      <View
+        style={{
+          width: widthPercentageToDP('100%'),
+          height: 2,
+          backgroundColor: '#D9D9D9',
+        }}
+      />
       <TouchableOpacity
         style={{
           paddingTop: 23,
@@ -59,18 +67,28 @@ const Setting = props => {
           flexDirection: 'row',
           alignItems: 'center',
         }}>
-        <Text>Customize units</Text>
-        <TouchableOpacity>
+        <Text style={{color: '#000000', fontWeight: 'bold'}}>
+          Customize units
+        </Text>
+        <View>
           <IconGoRight
             name="navigate-next"
             size={22}
             color="#000000"
             style={{marginRight: 8}}
           />
-        </TouchableOpacity>
+        </View>
       </TouchableOpacity>
       <View
         style={{
+          width: widthPercentageToDP('100%'),
+          height: 2,
+          backgroundColor: '#D9D9D9',
+        }}
+      />
+      <View
+        style={{
+          paddingTop: 23,
           padding: 8,
           justifyContent: 'space-between',
           flexDirection: 'row',
