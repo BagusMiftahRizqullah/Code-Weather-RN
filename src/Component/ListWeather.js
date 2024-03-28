@@ -1,12 +1,12 @@
 import {View, Text, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import FastImage from 'react-native-fast-image';
 import IconGoRight from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch, useSelector} from 'react-redux';
 
 const ListWeather = () => {
   const homeReducer = useSelector(state => state.homeReducer);
-
+  const [isSelected, setSelected] = useState(null);
   const TimeSlots = [
     '16:00',
     '17:00',
@@ -23,6 +23,7 @@ const ListWeather = () => {
         return (
           <View>
             <TouchableOpacity
+              onPress={() => setSelected(i)}
               key={i}
               style={{
                 justifyContent: 'space-between',
@@ -53,6 +54,16 @@ const ListWeather = () => {
               </View>
             </TouchableOpacity>
             <View style={{flex: 1, height: 2, backgroundColor: '#f2f2f2'}} />
+            {isSelected === i ? (
+              <View style={{flex: 1, height: 2, backgroundColor: '#f2f2f2'}}>
+                <View>
+                  <View>
+                    <Text>{`Thu`}</Text>
+                    <Text>{`28`}</Text>
+                  </View>
+                </View>
+              </View>
+            ) : null}
           </View>
         );
       })}

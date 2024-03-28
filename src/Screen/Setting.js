@@ -69,6 +69,23 @@ const Setting = props => {
           />
         </TouchableOpacity>
       </TouchableOpacity>
+      <View
+        style={{
+          padding: 8,
+          justifyContent: 'space-between',
+          flexDirection: 'row',
+        }}>
+        <Text style={{color: '#000000'}}>Data</Text>
+        <Text style={{color: '#000000'}}>One Call API</Text>
+      </View>
+      <View style={{padding: 8}}>
+        <Text style={{color: '#000000', textAlign: 'justify'}}>
+          All the data for OpenWeather App is provided by On Call Api.
+          OpenWeather aggregates and processes meteorological data from tens of
+          thousands of weather stations, on-ground radars and satelitesto bring
+          you accurate and actionable weather data for any location worldwide
+        </Text>
+      </View>
     </View>
   );
 };
