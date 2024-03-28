@@ -1,16 +1,16 @@
-import {HOME_ACTION} from './Search.Action';
+import {SEARCH_ACTION} from './Search.Action';
 
 const initialState = {
   isLoading: false,
-  DataWeather: [],
+  data_contry: [],
 };
 
-const homeReducer = (state = initialState, action) => {
+const searchReducer = (state = initialState, action) => {
   switch (action.type) {
-    case HOME_ACTION.GET_DATA_HOME:
+    case SEARCH_ACTION.GET_DATA_COUNTRY:
       return {
         ...state,
-        DataWeather: action.payload,
+        data_contry: action.payload,
       };
 
     default:
@@ -18,4 +18,4 @@ const homeReducer = (state = initialState, action) => {
   }
 };
 
-export default homeReducer;
+export default searchReducer;

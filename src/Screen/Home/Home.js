@@ -15,8 +15,14 @@ import Icon from 'react-native-vector-icons/Feather';
 import {LineChart} from 'react-native-chart-kit';
 import {IconSetting} from '../../Assets/images';
 import {heightPercentageToDP} from 'react-native-responsive-screen';
+import {useDispatch, useSelector} from 'react-redux';
+
 const Home = props => {
   const [refreshing, setRefreshing] = useState(false);
+
+  const homeReducer = useSelector(state => state.homeReducer);
+
+  console.log('homeReducerNEW', homeReducer?.DataWeather?.weather);
 
   const ComponentLineChart = () => {
     return (
@@ -89,7 +95,9 @@ const Home = props => {
             color="#000000"
             style={{marginRight: 8}}
           />
-          <Text style={styles.textSearch}>Indonesia</Text>
+          <Text style={styles.textSearch}>
+            {homeReducer?.DataWeather?.name}
+          </Text>
         </TouchableOpacity>
         <View style={styles.containerSetting}>
           <TouchableOpacity
@@ -114,8 +122,10 @@ const Home = props => {
         <View style={{alignItems: 'center'}}>
           <View style={styles.containerOverCast}>
             <FastImage
-              style={{width: 20, height: 20, marginRight: 12}}
-              source={IconSetting}
+              style={{width: 60, height: 60, marginRight: 12}}
+              source={{
+                uri: `http://openweathermap.org/img/wn/${homeReducer?.DataWeather?.weather[0]?.icon}.png`,
+              }}
               resizeMode={FastImage.resizeMode.contain}
             />
             <View>
@@ -128,8 +138,16 @@ const Home = props => {
             </View>
           </View>
           <View style={styles.containerTemperature}>
-            <Text style={styles.textTemparature}>27°C</Text>
-            <Text style={styles.textTempStatus}>Feel Like 31°C</Text>
+            <Text style={styles.textTemparature}>{`${Math.floor(
+              homeReducer?.DataWeather?.main?.temp,
+            )
+              .toString()
+              .substring(0, 3 - 1)}°C`}</Text>
+            <Text style={styles.textTempStatus}>{`Feel Like ${Math.floor(
+              homeReducer?.DataWeather?.main?.feels_like,
+            )
+              .toString()
+              .substring(0, 3 - 1)}°C`}</Text>
             <Text style={styles.textStatusDesc}>
               No precipitation within an hour
             </Text>
@@ -159,7 +177,7 @@ const Home = props => {
                 </Text>
                 <Text
                   style={{fontSize: 12, color: '#000000', fontWeight: 'bold'}}>
-                  3.8m/s W
+                  {`${homeReducer?.DataWeather?.main?.humidity}%`}
                 </Text>
               </View>
 
@@ -205,7 +223,7 @@ const Home = props => {
                 </Text>
                 <Text
                   style={{fontSize: 12, color: '#000000', fontWeight: 'bold'}}>
-                  1010hPa
+                  {`${homeReducer?.DataWeather?.main?.pressure}hPa`}
                 </Text>
               </View>
               <View
@@ -223,7 +241,7 @@ const Home = props => {
                 </Text>
                 <Text
                   style={{fontSize: 12, color: '#000000', fontWeight: 'bold'}}>
-                  10.0km
+                  {`${Number(homeReducer?.DataWeather?.visibility) / 10}km`}
                 </Text>
               </View>
 
@@ -270,7 +288,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffffff',
     flexDirection: 'column',
-    paddingVertical: 24,
+    paddingVertical: 12,
     paddingHorizontal: 18,
   },
   containerHeader: {

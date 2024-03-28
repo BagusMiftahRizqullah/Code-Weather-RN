@@ -3,13 +3,31 @@ import React, {useEffect} from 'react';
 import FastImage from 'react-native-fast-image';
 import {heightPercentageToDP} from 'react-native-responsive-screen';
 import IconApp from '../Assets/images/IconApp.png';
+import {useDispatch, useSelector} from 'react-redux';
+import {HOME_ACTION} from './Home/Home.Action';
 
 const SplashScreen = props => {
+  const dispatch = useDispatch();
+  const homeReducer = useSelector(state => state.homeReducer);
+
   useEffect(() => {
+    fetchWeather();
+
     setTimeout(() => {
-      props.navigation.navigate('HomeScreen');
+      if (homeReducer.DataWeather) {
+        props.navigation.navigate('HomeScreen');
+      } else {
+        fetchWeather();
+      }
     }, 800);
   }, []);
+
+  const fetchWeather = () => {
+    dispatch({
+      type: HOME_ACTION.GET_DATA_HOME,
+      payload: {country: 'London'},
+    });
+  };
 
   return (
     <View style={styles.container}>

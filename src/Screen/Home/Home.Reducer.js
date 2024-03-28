@@ -7,7 +7,7 @@ const initialState = {
 
 const homeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case HOME_ACTION.GET_DATA_HOME:
+    case HOME_ACTION.SUCCESS_GET_HOME:
       return {
         ...state,
         DataWeather: action.payload,

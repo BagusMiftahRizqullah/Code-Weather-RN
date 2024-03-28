@@ -1,18 +1,18 @@
 import {takeLatest, put} from 'redux-saga/effects';
-import {apiGetDataweather} from './Home.api';
+import {apiGetDataweatherHome} from './Home.api';
 import {HOME_ACTION} from './Home.Action';
 
 function* apiGetDataweatherSaga(action) {
-  const res = yield apiGetDataweather();
+  console.log('Goo 1');
   try {
-    if (res && res.data.code === 200) {
-      console.log('Goo apiGetDataweatherSaga', res);
-      yield put({type: HOME_ACTION.GET_DATA_HOME, payload: res.data.data});
+    const res = yield apiGetDataweatherHome(action.payload);
+    if (res.status == 200) {
+      yield put({type: HOME_ACTION.SUCCESS_GET_HOME, payload: res.data});
     } else {
-      //   yield put({type: AUTH_CONSTANT.LOGIN_FAILURE, payload: res.data});
+      console.log('GAGAL FETCH');
     }
   } catch (err) {
-    // yield put({type: AUTH_CONSTANT.LOGIN_FAILURE, payload: err});
+    console.log('GAGAL FETCH');
   }
 }
 

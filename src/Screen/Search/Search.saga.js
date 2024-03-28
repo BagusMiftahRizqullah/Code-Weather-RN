@@ -1,13 +1,13 @@
 import {takeLatest, put} from 'redux-saga/effects';
-import {apiGetDataweather} from './Search.api';
-import {HOME_ACTION} from './Search.Action';
+import {apiGetDataWeatherCountry} from './Search.api';
+import {SEARCH_ACTION} from './Search.Action';
 
-function* apiGetDataweatherSaga(action) {
-  const res = yield apiGetDataweather();
+function* apiDataCountrySaga(action) {
+  const res = yield apiGetDataWeatherCountry();
   try {
     if (res && res.data.code === 200) {
-      console.log('Goo apiGetDataweatherSaga', res);
-      yield put({type: HOME_ACTION.GET_DATA_HOME, payload: res.data.data});
+      console.log('Goo apiGetDataWeatherCountry', res);
+      // yield put({type: SEARCH_ACTION.GET_DATA_COUNTRY, payload: res.data.data});
     } else {
       //   yield put({type: AUTH_CONSTANT.LOGIN_FAILURE, payload: res.data});
     }
@@ -17,5 +17,5 @@ function* apiGetDataweatherSaga(action) {
 }
 
 export default function* searchSaga() {
-  yield takeLatest(HOME_ACTION.GET_DATA_HOME, apiGetDataweatherSaga);
+  yield takeLatest(SEARCH_ACTION.GET_DATA_COUNTRY, apiDataCountrySaga);
 }
