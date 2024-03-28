@@ -10,6 +10,7 @@ import {
   ScrollView,
 } from 'react-native';
 import React from 'react';
+import Config from 'react-native-config';
 import Geolocation from 'react-native-geolocation-service';
 import Geocoder from 'react-native-geocoding';
 import Icon from 'react-native-vector-icons/Feather';
@@ -98,33 +99,19 @@ const Search = props => {
       .catch(error => console.warn(error));
   };
 
-  Geocoder.init('AIzaSyAsI0vNPe8JNzLfI1ltcElk-mRaEOjiv2c');
+  Geocoder.init(Config.GOOGLE_KEY);
 
   return (
-    <View style={{padding: 12, flex: 1}}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}>
-        <View
-          style={{
-            padding: 8,
-            borderRadius: 8,
-            backgroundColor: '#e6e6e6',
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
+    <View style={styles.conatainer}>
+      <View style={styles.containerHead}>
+        <View style={styles.containerIcon}>
           <Icon
             name="search"
             size={22}
             color="#000000"
             style={{marginRight: 8}}
           />
-          <TextInput
-            style={{color: '#000000', width: '80%', height: 40}}
-            placeholder="Search"
-          />
+          <TextInput style={styles.textSearch} placeholder="Search" />
         </View>
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
           <IconX
@@ -136,13 +123,7 @@ const Search = props => {
         </TouchableOpacity>
       </View>
       <TouchableOpacity
-        style={{
-          paddingTop: 23,
-          padding: 8,
-
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}
+        style={styles.buttonGetLocation}
         onPress={() => getLocation()}>
         <IconLocation
           name="location"
@@ -187,4 +168,31 @@ const Search = props => {
 
 export default Search;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  conatainer: {
+    padding: 12,
+    flex: 1,
+  },
+  containerHead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  containerIcon: {
+    padding: 8,
+    borderRadius: 8,
+    backgroundColor: '#e6e6e6',
+    flexDirection: 'row',
+  },
+  textSearch: {
+    color: '#000000',
+    width: '80%',
+    height: 40,
+  },
+  buttonGetLocation: {
+    paddingTop: 23,
+    padding: 8,
+
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+});

@@ -13,7 +13,7 @@ import React, {useCallback, useState, useEffect} from 'react';
 import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/Feather';
 import {LineChart} from 'react-native-chart-kit';
-import {IconSetting} from '../Assets/images';
+import {IconSetting} from '../../Assets/images';
 import {heightPercentageToDP} from 'react-native-responsive-screen';
 const Home = props => {
   const [refreshing, setRefreshing] = useState(false);
@@ -79,12 +79,7 @@ const Home = props => {
   return (
     <View style={styles.contaner}>
       {/* Header */}
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          paddingVertical: 8,
-        }}>
+      <View style={styles.containerHeader}>
         <TouchableOpacity
           onPress={() => props.navigation.navigate('SearchScreen')}
           style={styles.containerSearch}>
@@ -117,7 +112,7 @@ const Home = props => {
           marginTop: 24,
         }}>
         <View style={{alignItems: 'center'}}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View style={styles.containerOverCast}>
             <FastImage
               style={{width: 20, height: 20, marginRight: 12}}
               source={IconSetting}
@@ -132,53 +127,21 @@ const Home = props => {
               </Text>
             </View>
           </View>
-          <View style={{justifyContent: 'center', alignItems: 'center'}}>
-            <Text style={{fontSize: 76, color: '#000000'}}>27°C</Text>
-            <Text style={{fontSize: 13, color: '#000000'}}>Feel Like 31°C</Text>
-            <Text
-              style={{
-                paddingTop: 32,
-                fontSize: 13,
-                fontWeight: 'bold',
-                color: '#000000',
-              }}>
+          <View style={styles.containerTemperature}>
+            <Text style={styles.textTemparature}>27°C</Text>
+            <Text style={styles.textTempStatus}>Feel Like 31°C</Text>
+            <Text style={styles.textStatusDesc}>
               No precipitation within an hour
             </Text>
           </View>
           <ComponentLineChart />
 
           {/* Data Wind */}
-          <View
-            style={{
-              backgroundColor: '#e4e4e4',
-              padding: 4,
-              width: '100%',
-              borderRadius: 8,
-            }}>
-            <View
-              style={{
-                justifyContent: 'space-between',
-                flexDirection: 'row',
-                padding: 8,
-                alignItems: 'center',
-              }}>
-              <View
-                style={{
-                  justifyContent: 'space-between',
-                  flexDirection: 'row',
-                }}>
-                <Text
-                  style={{
-                    fontSize: 12,
-                    color: '#000000',
-                    fontWeight: 'bold',
-                  }}>
-                  Wind:
-                </Text>
-                <Text
-                  style={{fontSize: 12, color: '#000000', fontWeight: 'bold'}}>
-                  3.8m/s W
-                </Text>
+          <View style={styles.containerDataWind}>
+            <View style={styles.secondContainerWind}>
+              <View style={styles.windData}>
+                <Text style={styles.textWind}>Wind:</Text>
+                <Text style={styles.resWind}>3.8m/s W</Text>
               </View>
 
               <View
@@ -310,6 +273,11 @@ const styles = StyleSheet.create({
     paddingVertical: 24,
     paddingHorizontal: 18,
   },
+  containerHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 8,
+  },
   containerSearch: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -322,5 +290,52 @@ const styles = StyleSheet.create({
   containerSetting: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  containerOverCast: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  containerTemperature: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textTemparature: {
+    fontSize: 76,
+    color: '#000000',
+  },
+  textTempStatus: {
+    fontSize: 13,
+    color: '#000000',
+  },
+  textStatusDesc: {
+    paddingTop: 32,
+    fontSize: 13,
+    fontWeight: 'bold',
+    color: '#000000',
+  },
+  containerDataWind: {
+    backgroundColor: '#e4e4e4',
+    padding: 4,
+    width: '100%',
+    borderRadius: 8,
+  },
+  secondContainerWind: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    padding: 8,
+  },
+  windData: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+  textWind: {
+    fontSize: 12,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  resWind: {
+    fontSize: 12,
+    color: '#000000',
+    fontWeight: 'bold',
   },
 });
