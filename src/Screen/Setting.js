@@ -4,16 +4,18 @@ import IconGoback from 'react-native-vector-icons/Ionicons';
 import IconGoRight from 'react-native-vector-icons/MaterialIcons';
 import {widthPercentageToDP} from 'react-native-responsive-screen';
 
-const Setting = () => {
+const Setting = props => {
   return (
     <View>
       <View
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
-          paddingVertical: 32,
+          paddingVertical: 12,
         }}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <TouchableOpacity
+          onPress={() => props.navigation.goBack()}
+          style={{flexDirection: 'row', alignItems: 'center'}}>
           <IconGoback
             style={{marginRight: 8}}
             name="chevron-back"
@@ -23,7 +25,7 @@ const Setting = () => {
           <Text style={{fontSize: 16, color: '#000000', fontWeight: 'bold'}}>
             Home
           </Text>
-        </View>
+        </TouchableOpacity>
         <Text style={{fontSize: 18, color: '#000000', fontWeight: 'bold'}}>
           Settings
         </Text>

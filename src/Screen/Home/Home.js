@@ -7,37 +7,66 @@ import {
   ScrollView,
   Dimensions,
   RefreshControl,
-  FlatList,
 } from 'react-native';
-import React, {useCallback, useState, useEffect} from 'react';
+import React, {useCallback, useState, useRef, useEffect} from 'react';
 import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/Feather';
+import IconGoRight from 'react-native-vector-icons/MaterialIcons';
 import {LineChart} from 'react-native-chart-kit';
 import {IconSetting} from '../../Assets/images';
-import {heightPercentageToDP} from 'react-native-responsive-screen';
 import {useDispatch, useSelector} from 'react-redux';
+import {HOME_ACTION} from './Home.Action';
+import TimeWeather from '../../Component/TimeWeather';
+import ListWeather from '../../Component/ListWeather';
 
 const Home = props => {
+  const dispatch = useDispatch();
+  // const appState = useRef(AppState.currentState);
   const [refreshing, setRefreshing] = useState(false);
 
   const homeReducer = useSelector(state => state.homeReducer);
 
-  console.log('homeReducerNEW', homeReducer?.DataWeather?.weather);
+  const TimeSlots = [
+    '16:00',
+    '17:00',
+    '18:00',
+    '19:00',
+    '20:00',
+    '21:00',
+    '22:00',
+    '23:00',
+  ];
+
+  // const _handleAppStateChange = nextAppState => {
+  //   if (
+  //     appState.current.match(/inactive|background/) &&
+  //     nextAppState === 'active'
+  //   ) {
+  //     console.log('App has come to the foreground!');
+  //     onRefresh();
+  //     //clearInterval when your app has come back to the foreground
+  //   } else {
+  //     //app goes to background
+  //     console.log('app goes to background');
+
+  //     appState.current = nextAppState;
+  //     console.log('AppState', appState.current);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   AppState.addEventListener('change', _handleAppStateChange);
+
+  //   return () => {
+  //     AppState.removeEventListener('change', _handleAppStateChange);
+  //   };
+  // }, []);
 
   const ComponentLineChart = () => {
     return (
       <LineChart
         data={{
-          labels: [
-            '16:00',
-            '17:00',
-            '18:00',
-            '19:00',
-            '20:00',
-            '21:00',
-            '22:00',
-            '23:00',
-          ],
+          labels: TimeSlots,
           datasets: [
             {
               data: [5, 2.5, 1.5],
@@ -53,6 +82,7 @@ const Home = props => {
           labelColor: (opacity = 1) => `white`,
           style: {},
         }}
+        bezier
         style={{
           marginVertical: 8,
           borderRadius: 16,
@@ -62,25 +92,16 @@ const Home = props => {
     );
   };
 
-  const renderItem = ({item}) => {
-    return (
-      <View style={{padding: 12, alignItems: 'center'}}>
-        <Text>18:30</Text>
-        <View style={{height: 12}} />
-        <TouchableOpacity>
-          <FastImage
-            style={{width: 20, height: 20}}
-            source={IconSetting}
-            resizeMode={FastImage.resizeMode.contain}
-          />
-        </TouchableOpacity>
-        <View style={{height: 12}} />
-        <Text>27°C</Text>
-      </View>
-    );
-  };
-
-  const onRefresh = useCallback(() => {});
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    dispatch({
+      type: HOME_ACTION.GET_DATA_HOME,
+      payload: {country: homeReducer?.DataWeather.name},
+    });
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  });
 
   return (
     <View style={styles.contaner}>
@@ -196,7 +217,11 @@ const Home = props => {
                 </Text>
                 <Text
                   style={{fontSize: 12, color: '#000000', fontWeight: 'bold'}}>
-                  3.8m/s W
+                  {`${
+                    homeReducer?.DataWeather?.current?.uvi
+                      ? homeReducer?.DataWeather?.current?.uvi
+                      : 0
+                  }m/s W`}
                 </Text>
               </View>
             </View>
@@ -260,21 +285,22 @@ const Home = props => {
                 </Text>
                 <Text
                   style={{fontSize: 12, color: '#000000', fontWeight: 'bold'}}>
-                  27°C
+                  {`${
+                    Math.floor(homeReducer?.DataWeather?.main?.temp) %
+                    Math.floor(homeReducer?.DataWeather?.main?.feels_like)
+                  }°C`}
                 </Text>
               </View>
             </View>
           </View>
 
           {/* Flatlist perr icon */}
-          <View>
-            <FlatList
-              horizontal
-              keyExtractor={item => item}
-              data={[1, 2, 3, 4, 5, 6, 7]}
-              renderItem={renderItem}
-            />
+          <View style={{flex: 1}}>
+            <TimeWeather />
           </View>
+        </View>
+        <View style={{flex: 1}}>
+          <ListWeather />
         </View>
       </ScrollView>
     </View>
