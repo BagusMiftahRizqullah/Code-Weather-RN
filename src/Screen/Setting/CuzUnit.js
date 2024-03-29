@@ -1,7 +1,6 @@
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import IconGoback from 'react-native-vector-icons/Ionicons';
-import IconGoRight from 'react-native-vector-icons/MaterialIcons';
 import {widthPercentageToDP} from 'react-native-responsive-screen';
 import SwitchSelector from 'react-native-switch-selector';
 

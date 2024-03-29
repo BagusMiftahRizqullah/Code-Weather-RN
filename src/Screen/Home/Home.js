@@ -18,6 +18,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {HOME_ACTION} from './Home.Action';
 import TimeWeather from '../../Component/TimeWeather';
 import ListWeather from '../../Component/ListWeather';
+import {widthPercentageToDP} from 'react-native-responsive-screen';
 
 const Home = props => {
   const dispatch = useDispatch();
@@ -71,20 +72,22 @@ const Home = props => {
             },
           ],
         }}
-        width={Dimensions.get('window').width - 50} // from react-native
+        width={Dimensions.get('window').width} // from react-native
         height={120}
         chartConfig={{
+          backgroundGradientFromOpacity: 0,
+          backgroundGradientToOpacity: 0,
           backgroundColor: '#ffffff',
           decimalPlaces: 1, // optional, defaults to 2dp
-          color: (opacity = 1) => `white`,
-          labelColor: (opacity = 1) => `white`,
+          color: (opacity = 1) => `green`,
+          labelColor: (opacity = 1) => `green`,
           style: {},
         }}
         bezier
         style={{
           marginVertical: 8,
           borderRadius: 16,
-          backgroundColor: '#ffffff',
+          alignItems: 'center',
         }}
       />
     );
