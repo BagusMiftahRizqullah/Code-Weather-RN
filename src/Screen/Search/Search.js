@@ -27,21 +27,12 @@ const Search = props => {
   const searchReducer = useSelector(state => state.searchReducer);
 
   const SearchMyLocation = async a => {
-    // dispatch({
-    //   type: SEARCH_ACTION.SEARCH_DATA_COUNTRY,
-    //   payload: {
-    //     search: a,
-    //   },
-    // });
-
-    console.log('HOME_ACTION.GET_DATA_HOME', a);
     dispatch({
       type: HOME_ACTION.GET_DATA_HOME,
       payload: {country: a},
     });
   };
 
-  console.log('searchReducer', searchReducer);
   const requestLocationPermission = async () => {
     if (Platform.OS === 'ios') {
       try {

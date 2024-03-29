@@ -19,7 +19,6 @@ const searchReducer = (state = initialState, action) => {
       };
 
     case SEARCH_ACTION.SET_MY_LOCATION:
-      console.log('latituds', action.payload.lat);
       return {
         ...state,
         myLocation: {

@@ -12,7 +12,6 @@ export const apiGetDataWeatherCountry = data => {
 };
 
 export const apiSearchWeatherCountry = data => {
-  console.log('DATAsearch', data.payload.search);
   return axios({
     method: 'GET',
     url: `${baseApiURL}?q=${data.payload.search},uk&APPID=${Config.KEY_API}`,
