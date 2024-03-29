@@ -1,4 +1,3 @@
-![wheaderapp.png](https://drive.google.com/file/d/11PtYUOT972a-LJy5gjOZzhD-u1VZ-ldN/view?usp=sharing)
 
 
 
