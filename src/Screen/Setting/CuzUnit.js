@@ -5,29 +5,21 @@ import {widthPercentageToDP} from 'react-native-responsive-screen';
 import SwitchSelector from 'react-native-switch-selector';
 
 const CuzUnit = props => {
-  // const [temperature, setTemperatur] = useState('C');
   return (
-    <View style={{flex: 1}}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          paddingVertical: 12,
-        }}>
+    <View style={styles.containerCuzUnit}>
+      <View style={styles.containerHeader}>
         <TouchableOpacity
           onPress={() => props.navigation.goBack()}
-          style={{flexDirection: 'row', alignItems: 'center'}}>
+          style={styles.containerGoBack}>
           <IconGoback
             style={{marginRight: 8}}
             name="chevron-back"
             size={22}
             color="#000000"
           />
-          <Text style={{fontSize: 16, color: '#000000'}}>Settings</Text>
+          <Text style={styles.textSetting}>Settings</Text>
         </TouchableOpacity>
-        <Text style={{fontSize: 18, color: '#000000', fontWeight: 'bold'}}>
-          Units
-        </Text>
+        <Text style={styles.textCusUnit}>Units</Text>
         <View style={{width: widthPercentageToDP('20%'), height: 24}} />
       </View>
       <View
@@ -39,20 +31,8 @@ const CuzUnit = props => {
         }}
       />
 
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          paddingHorizontal: 12,
-          alignItems: 'center',
-        }}>
-        <Text
-          style={{
-            fontSize: 16,
-            color: '#000000',
-          }}>
-          Temperature
-        </Text>
+      <View style={styles.containerData}>
+        <Text style={styles.textData}>Temperature</Text>
         <SwitchSelector
           style={{marginVertical: 12, width: widthPercentageToDP('50%')}}
           initial={0}
@@ -77,20 +57,8 @@ const CuzUnit = props => {
           opacity: 0.5,
         }}
       />
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          paddingHorizontal: 12,
-          alignItems: 'center',
-        }}>
-        <Text
-          style={{
-            fontSize: 16,
-            color: '#000000',
-          }}>
-          Wind Speed
-        </Text>
+      <View style={styles.containerData}>
+        <Text style={styles.textData}>Wind Speed</Text>
         <SwitchSelector
           style={{marginVertical: 12, width: widthPercentageToDP('50%')}}
           initial={0}
@@ -116,20 +84,8 @@ const CuzUnit = props => {
           opacity: 0.5,
         }}
       />
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          paddingHorizontal: 12,
-          alignItems: 'center',
-        }}>
-        <Text
-          style={{
-            fontSize: 16,
-            color: '#000000',
-          }}>
-          Pressure
-        </Text>
+      <View style={styles.containerData}>
+        <Text style={styles.textData}>Pressure</Text>
         <SwitchSelector
           style={{marginVertical: 12, width: widthPercentageToDP('50%')}}
           initial={0}
@@ -154,20 +110,8 @@ const CuzUnit = props => {
           opacity: 0.5,
         }}
       />
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          paddingHorizontal: 12,
-          alignItems: 'center',
-        }}>
-        <Text
-          style={{
-            fontSize: 16,
-            color: '#000000',
-          }}>
-          Precipitation
-        </Text>
+      <View style={styles.containerData}>
+        <Text style={styles.textData}>Precipitation</Text>
         <SwitchSelector
           style={{marginVertical: 12, width: widthPercentageToDP('50%')}}
           initial={0}
@@ -192,20 +136,8 @@ const CuzUnit = props => {
           opacity: 0.5,
         }}
       />
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          paddingHorizontal: 12,
-          alignItems: 'center',
-        }}>
-        <Text
-          style={{
-            fontSize: 16,
-            color: '#000000',
-          }}>
-          Distance
-        </Text>
+      <View style={styles.containerData}>
+        <Text style={styles.textData}>Distance</Text>
         <SwitchSelector
           style={{marginVertical: 12, width: widthPercentageToDP('50%')}}
           initial={0}
@@ -230,20 +162,8 @@ const CuzUnit = props => {
           opacity: 0.5,
         }}
       />
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          paddingHorizontal: 12,
-          alignItems: 'center',
-        }}>
-        <Text
-          style={{
-            fontSize: 16,
-            color: '#000000',
-          }}>
-          Time format
-        </Text>
+      <View style={styles.containerData}>
+        <Text style={styles.textData}>Time format</Text>
         <SwitchSelector
           style={{marginVertical: 12, width: widthPercentageToDP('50%')}}
           initial={0}
@@ -274,4 +194,36 @@ const CuzUnit = props => {
 
 export default CuzUnit;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  containerCuzUnit: {
+    flex: 1,
+  },
+  containerHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 12,
+  },
+  containerGoBack: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  textSetting: {
+    fontSize: 16,
+    color: '#000000',
+  },
+  textUnits: {
+    fontSize: 18,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  containerData: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 12,
+    alignItems: 'center',
+  },
+  textData: {
+    fontSize: 16,
+    color: '#000000',
+  },
+});
