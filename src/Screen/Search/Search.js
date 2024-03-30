@@ -9,10 +9,8 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
-import React, {useCallback, useState} from 'react';
-import Config from 'react-native-config';
+import React from 'react';
 import Geolocation from 'react-native-geolocation-service';
-import Geocoder from 'react-native-geocoding';
 import Icon from 'react-native-vector-icons/Feather';
 import IconX from 'react-native-vector-icons/AntDesign';
 import IconLocation from 'react-native-vector-icons/Octicons';
@@ -24,7 +22,6 @@ import * as _ from 'lodash';
 
 const Search = props => {
   const dispatch = useDispatch();
-  const searchReducer = useSelector(state => state.searchReducer);
 
   const SearchMyLocation = async a => {
     dispatch({
@@ -52,13 +49,12 @@ const Search = props => {
       }
     } else {
       try {
-        // const isGranted = await MapboxGL.requestAndroidLocationPermissions();
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
           {
             title: 'Geolocation Permission',
             message:
-              'Hayuq App requires your location permission to be able to deliver your orders and show you restaurants around you',
+              'Weather App requires your location permission to be able to deliver your orders and show you restaurants around you',
             buttonNeutral: 'Ask Me Later',
             buttonNegative: 'Cancel',
             buttonPositive: 'OK',
@@ -88,10 +84,6 @@ const Search = props => {
         if (res) {
           Geolocation.getCurrentPosition(
             position => {
-              // getLocConvertAddress(
-              //   position?.coords.latitude,
-              //   position?.coords.longitude,
-              // );
               dispatch({
                 type: SEARCH_ACTION.SET_MY_LOCATION,
                 payload: {
@@ -116,18 +108,6 @@ const Search = props => {
       })
       .catch(Err => console.log('Error', Err));
   };
-
-  // const getLocConvertAddress = async (lat, long) => {
-  //   Geocoder.from(lat, long)
-  //     .then(json => {
-  //       const res = json.results[0].formatted_address;
-  //       const address = res.replace(/^[^,]*\+[^,]*,/, '');
-  //       console.log('ADDRESS', address);
-  //     })
-  //     .catch(error => console.warn(error));
-  // };
-
-  // Geocoder.init(Config.GOOGLE_KEY);
 
   return (
     <View style={styles.conatainer}>
@@ -169,14 +149,7 @@ const Search = props => {
 
       {/* Result Search */}
       <ScrollView>
-        <TouchableOpacity
-          style={{
-            paddingTop: 23,
-            padding: 8,
-            justifyContent: 'space-between',
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
+        <TouchableOpacity style={styles.containerResultSearch}>
           <IconLocation
             name="location"
             size={22}
@@ -226,6 +199,13 @@ const styles = StyleSheet.create({
     paddingTop: 23,
     padding: 8,
 
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  containerResultSearch: {
+    paddingTop: 23,
+    padding: 8,
+    justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
   },
