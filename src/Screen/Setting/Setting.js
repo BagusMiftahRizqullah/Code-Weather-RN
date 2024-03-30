@@ -8,26 +8,19 @@ const Setting = props => {
   return (
     <View>
       {/* Header */}
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          paddingVertical: 12,
-        }}>
+      <View style={styles.containerHeader}>
         <TouchableOpacity
           onPress={() => props.navigation.goBack()}
-          style={{flexDirection: 'row', alignItems: 'center'}}>
+          style={styles.containerButtonBack}>
           <IconGoback
             style={{marginRight: 8}}
             name="chevron-back"
             size={22}
             color="#000000"
           />
-          <Text style={{fontSize: 16, color: '#000000'}}>Home</Text>
+          <Text style={styles.textHome}>Home</Text>
         </TouchableOpacity>
-        <Text style={{fontSize: 18, color: '#000000', fontWeight: 'bold'}}>
-          Settings
-        </Text>
+        <Text style={styles.textSetting}>Settings</Text>
         <View style={{width: widthPercentageToDP('20%'), height: 24}} />
       </View>
       <View
@@ -40,16 +33,8 @@ const Setting = props => {
       />
       <TouchableOpacity
         onPress={() => props.navigation.navigate('SettingWeather')}
-        style={{
-          paddingTop: 23,
-          padding: 8,
-          justifyContent: 'space-between',
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}>
-        <Text style={{color: '#000000', fontWeight: 'bold'}}>
-          Different weather
-        </Text>
+        style={styles.containerDifWeather}>
+        <Text style={styles.textDifWeather}>Different weather</Text>
         <View>
           <IconGoRight
             name="navigate-next"
@@ -59,25 +44,11 @@ const Setting = props => {
           />
         </View>
       </TouchableOpacity>
-      <View
-        style={{
-          width: widthPercentageToDP('100%'),
-          height: 2,
-          backgroundColor: '#D9D9D9',
-        }}
-      />
+      <View style={styles.containerList} />
       <TouchableOpacity
         onPress={() => props.navigation.navigate('SettingUnit')}
-        style={{
-          paddingTop: 23,
-          padding: 8,
-          justifyContent: 'space-between',
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}>
-        <Text style={{color: '#000000', fontWeight: 'bold'}}>
-          Customize units
-        </Text>
+        style={styles.componentList}>
+        <Text style={styles.textCusUnit}>Customize units</Text>
         <View>
           <IconGoRight
             name="navigate-next"
@@ -87,25 +58,13 @@ const Setting = props => {
           />
         </View>
       </TouchableOpacity>
-      <View
-        style={{
-          width: widthPercentageToDP('100%'),
-          height: 2,
-          backgroundColor: '#D9D9D9',
-        }}
-      />
-      <View
-        style={{
-          paddingTop: 23,
-          padding: 8,
-          justifyContent: 'space-between',
-          flexDirection: 'row',
-        }}>
-        <Text style={{color: '#000000'}}>Data</Text>
-        <Text style={{color: '#000000'}}>One Call API</Text>
+      <View style={styles.containerList} />
+      <View style={styles.containerTextData}>
+        <Text style={styles.textHeadData}>Data</Text>
+        <Text style={styles.textHeadData}>One Call API</Text>
       </View>
-      <View style={{padding: 8}}>
-        <Text style={{color: '#000000', textAlign: 'justify'}}>
+      <View style={styles.containerAllTextData}>
+        <Text style={styles.textAllData}>
           All the data for OpenWeather App is provided by On Call Api.
           OpenWeather aggregates and processes meteorological data from tens of
           thousands of weather stations, on-ground radars and satelitesto bring
@@ -125,5 +84,64 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingVertical: 24,
     paddingHorizontal: 18,
+  },
+  containerHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 12,
+  },
+  containerButtonBack: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  textHome: {
+    fontSize: 16,
+    color: '#000000',
+  },
+  textSetting: {
+    fontSize: 18,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  containerDifWeather: {
+    paddingTop: 23,
+    padding: 8,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  textDifWeather: {
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  containerList: {
+    width: widthPercentageToDP('100%'),
+    height: 2,
+    backgroundColor: '#D9D9D9',
+  },
+  componentList: {
+    paddingTop: 23,
+    padding: 8,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  textCusUnit: {
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  containerTextData: {
+    paddingTop: 23,
+    padding: 8,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+  textHeadData: {color: '#000000'},
+  containerAllTextData: {
+    padding: 8,
+  },
+  textAllData: {
+    color: '#000000',
+    textAlign: 'justify',
   },
 });
