@@ -5,7 +5,10 @@ this KEY for api :
  ```
    API KEY = 0bad2146f3184ebbfede5480ab2618e1
  ```
-
+you can use like this
+ ```
+   API = https://api.openweathermap.org/data/2.5/weather?q=indonesia&APPID=0bad2146f3184ebbfede5480ab2618e1
+ ```
 >**Note**: Im so sory, because using the free plan, api usage is limited. 
 
 
