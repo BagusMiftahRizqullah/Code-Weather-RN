@@ -9,7 +9,7 @@ import {
   RefreshControl,
   BackHandler,
 } from 'react-native';
-import React, {useCallback, useState, useRef, useEffect} from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
 import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/Feather';
 import {LineChart} from 'react-native-chart-kit';
@@ -18,13 +18,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import {HOME_ACTION} from './Home.Action';
 import TimeWeather from '../../Component/TimeWeather';
 import ListWeather from '../../Component/ListWeather';
-import {widthPercentageToDP} from 'react-native-responsive-screen';
 
 const Home = props => {
   const dispatch = useDispatch();
-  // const appState = useRef(AppState.currentState);
   const [refreshing, setRefreshing] = useState(false);
-
   const homeReducer = useSelector(state => state.homeReducer);
 
   const TimeSlots = [
@@ -37,23 +34,6 @@ const Home = props => {
     '22:00',
     '23:00',
   ];
-
-  // const _handleAppStateChange = nextAppState => {
-  //   if (
-  //     appState.current.match(/inactive|background/) &&
-  //     nextAppState === 'active'
-  //   ) {
-  //     console.log('App has come to the foreground!');
-  //     onRefresh();
-  //     //clearInterval when your app has come back to the foreground
-  //   } else {
-  //     //app goes to background
-  //     console.log('app goes to background');
-
-  //     appState.current = nextAppState;
-  //     console.log('AppState', appState.current);
-  //   }
-  // };
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', function () {
@@ -216,8 +196,7 @@ const Home = props => {
                   }}>
                   UV index:
                 </Text>
-                <Text
-                  style={{fontSize: 12, color: '#000000', fontWeight: 'bold'}}>
+                <Text style={styles.textUV}>
                   {`${
                     homeReducer?.DataWeather?.current?.uvi
                       ? homeReducer?.DataWeather?.current?.uvi
@@ -227,65 +206,27 @@ const Home = props => {
               </View>
             </View>
 
-            <View
-              style={{
-                justifyContent: 'space-between',
-                flexDirection: 'row',
-                padding: 8,
-                alignItems: 'center',
-              }}>
+            <View style={styles.containerPvd}>
               <View
                 style={{
                   justifyContent: 'space-between',
                   flexDirection: 'row',
                 }}>
-                <Text
-                  style={{
-                    fontSize: 12,
-                    color: '#000000',
-                    fontWeight: 'bold',
-                  }}>
-                  Pressure:
-                </Text>
-                <Text
-                  style={{fontSize: 12, color: '#000000', fontWeight: 'bold'}}>
+                <Text style={styles.textPressure}>Pressure:</Text>
+                <Text style={styles.textResPressure}>
                   {`${homeReducer?.DataWeather?.main?.pressure}hPa`}
                 </Text>
               </View>
-              <View
-                style={{
-                  justifyContent: 'space-between',
-                  flexDirection: 'row',
-                }}>
-                <Text
-                  style={{
-                    fontSize: 12,
-                    color: '#000000',
-                    fontWeight: 'bold',
-                  }}>
-                  Visibility:
-                </Text>
-                <Text
-                  style={{fontSize: 12, color: '#000000', fontWeight: 'bold'}}>
+              <View style={styles.containerVisibility}>
+                <Text style={styles.textVisibility}>Visibility:</Text>
+                <Text style={styles.textResVisibility}>
                   {`${Number(homeReducer?.DataWeather?.visibility) / 10}km`}
                 </Text>
               </View>
 
-              <View
-                style={{
-                  justifyContent: 'space-between',
-                  flexDirection: 'row',
-                }}>
-                <Text
-                  style={{
-                    fontSize: 12,
-                    color: '#000000',
-                    fontWeight: 'bold',
-                  }}>
-                  Dew point:
-                </Text>
-                <Text
-                  style={{fontSize: 12, color: '#000000', fontWeight: 'bold'}}>
+              <View style={styles.containerDewPoint}>
+                <Text style={styles.textDewPoint}>Dew point:</Text>
+                <Text style={styles.resDewPoint}>
                   {`${
                     Math.floor(homeReducer?.DataWeather?.main?.temp) %
                     Math.floor(homeReducer?.DataWeather?.main?.feels_like)
@@ -379,6 +320,55 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   resWind: {
+    fontSize: 12,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  textUV: {
+    fontSize: 12,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  containerPvd: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    padding: 8,
+    alignItems: 'center',
+  },
+  textPressure: {
+    fontSize: 12,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  textResPressure: {
+    fontSize: 12,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  containerVisibility: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+  textVisibility: {
+    fontSize: 12,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  textResVisibility: {
+    fontSize: 12,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  containerDewPoint: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+  textDewPoint: {
+    fontSize: 12,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  resDewPoint: {
     fontSize: 12,
     color: '#000000',
     fontWeight: 'bold',
