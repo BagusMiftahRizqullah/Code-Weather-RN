@@ -19,7 +19,7 @@ const CuzUnit = props => {
           />
           <Text style={styles.textSetting}>Settings</Text>
         </TouchableOpacity>
-        <Text style={styles.textCusUnit}>Units</Text>
+        <Text style={styles.textSetting}>Units</Text>
         <View style={{width: widthPercentageToDP('20%'), height: 24}} />
       </View>
       <View
