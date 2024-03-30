@@ -94,13 +94,8 @@ const DifWeather = props => {
     );
   };
   return (
-    <ScrollView style={{flex: 1, backgroundColor: '#FFFFFF'}}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          paddingVertical: 12,
-        }}>
+    <ScrollView style={styles.container}>
+      <View style={styles.containerHeader}>
         <TouchableOpacity
           onPress={() => props.navigation.goBack()}
           style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -110,32 +105,17 @@ const DifWeather = props => {
             size={22}
             color="#000000"
           />
-          <Text style={{fontSize: 16, color: '#000000'}}>Settings</Text>
+          <Text style={styles.textSetting}>Settings</Text>
         </TouchableOpacity>
-        <Text style={{fontSize: 18, color: '#000000', fontWeight: 'bold'}}>
-          Different Weather?
-        </Text>
+        <Text style={styles.textSetting}>Different Weather?</Text>
         <View style={{width: widthPercentageToDP('20%'), height: 24}} />
       </View>
-      <View
-        style={{
-          padding: 12,
-          paddingTop: 23,
-          justifyContent: 'space-between',
-          flexDirection: 'row',
-        }}>
-        <Text style={{fontSize: 16, color: '#000000', fontWeight: 'bold'}}>
-          What is the sky like?
-        </Text>
+      <View style={styles.containerSkys}>
+        <Text style={styles.textTellSkyLike}>What is the sky like?</Text>
         <Text>{ListSkys[skySelected]['name']}</Text>
       </View>
 
-      <View
-        style={{
-          backgroundColor: '#F0F0F0',
-          paddingVertical: 8,
-          paddingHorizontal: 8,
-        }}>
+      <View style={styles.containerListSkys}>
         <FlatList
           data={ListSkys}
           numColumns={3}
@@ -147,13 +127,7 @@ const DifWeather = props => {
       <TempSlider />
       <WindSlider />
       {/* email */}
-      <View
-        style={{
-          borderRadius: 12,
-          padding: 4,
-          backgroundColor: '#F0F0F0',
-          margin: 12,
-        }}>
+      <View style={styles.containerTextInput}>
         <TextInput
           keyboardType="email-address"
           placeholder="Email (Optional)"
@@ -161,14 +135,7 @@ const DifWeather = props => {
       </View>
 
       {/* Message */}
-      <View
-        style={{
-          borderRadius: 12,
-          padding: 4,
-          backgroundColor: '#F0F0F0',
-          margin: 12,
-          height: heightPercentageToDP('20%'),
-        }}>
+      <View style={styles.containerMessage}>
         <TextInput
           multiline
           keyboardType="default"
@@ -176,24 +143,9 @@ const DifWeather = props => {
         />
       </View>
 
-      <View
-        style={{
-          paddingVertical: 12,
-          paddingHorizontal: 12,
-        }}>
-        <View
-          style={{
-            justifyContent: 'space-between',
-            flexDirection: 'row',
-          }}>
-          <Text
-            style={{
-              fontSize: 16,
-              color: '#000000',
-              fontWeight: 'bold',
-            }}>
-            Data Source:
-          </Text>
+      <View style={styles.containerDataSource}>
+        <View style={styles.containerTextData}>
+          <Text style={styles.textDataSource}>Data Source:</Text>
           <Text>{DataSource[dataSourceSelected]}</Text>
         </View>
         <View
@@ -210,11 +162,7 @@ const DifWeather = props => {
             <TouchableOpacity
               onPress={() => setDataSourceSelected(i)}
               key={i}
-              style={{
-                padding: 8,
-
-                flexDirection: 'row',
-              }}>
+              style={styles.containerList}>
               <CheckBox
                 uncheckedCheckBoxColor={'#D9D9D9'}
                 checkedCheckBoxColor={'#3EB489'}
@@ -239,23 +187,8 @@ const DifWeather = props => {
         })}
       </View>
 
-      <TouchableOpacity
-        style={{
-          backgroundColor: '#F0F0F0',
-          padding: 12,
-          margin: 12,
-          borderRadius: 8,
-          alignItems: 'center',
-          marginBottom: 32,
-        }}>
-        <Text
-          style={{
-            paddingLeft: 8,
-            fontSize: 16,
-            color: '#4169E1',
-          }}>
-          Send
-        </Text>
+      <TouchableOpacity style={styles.containerButton}>
+        <Text style={styles.textButton}>Send</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -263,4 +196,82 @@ const DifWeather = props => {
 
 export default DifWeather;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  containerHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 12,
+  },
+  textSetting: {
+    fontSize: 16,
+    color: '#000000',
+  },
+  textDifferentWeather: {
+    fontSize: 18,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  containerSkys: {
+    padding: 12,
+    paddingTop: 23,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+  textTellSkyLike: {
+    fontSize: 16,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  containerListSkys: {
+    backgroundColor: '#F0F0F0',
+    paddingVertical: 8,
+    paddingHorizontal: 8,
+  },
+  containerTextInput: {
+    borderRadius: 12,
+    padding: 4,
+    backgroundColor: '#F0F0F0',
+    margin: 12,
+  },
+  containerMessage: {
+    borderRadius: 12,
+    padding: 4,
+    backgroundColor: '#F0F0F0',
+    margin: 12,
+    height: heightPercentageToDP('20%'),
+  },
+  containerDataSource: {
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+  },
+  containerTextData: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+  textDataSource: {
+    fontSize: 16,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  containerList: {
+    padding: 8,
+    flexDirection: 'row',
+  },
+  containerButton: {
+    backgroundColor: '#F0F0F0',
+    padding: 12,
+    margin: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginBottom: 32,
+  },
+  textButton: {
+    paddingLeft: 8,
+    fontSize: 16,
+    color: '#4169E1',
+  },
+});
